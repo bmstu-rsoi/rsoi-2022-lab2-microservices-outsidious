@@ -15,25 +15,25 @@ services:
       
   gateway:
     image: gateway
-    build: ./v2/src/gateway/
+    build: v2/gateway
     ports:
       - "8080:8080"
       
   loyalty:
     image: loyalty
-    build: ./v2/src/loyalty/
+    build: v2/loyalty
     ports:
       - "8050:8050"
       
   payment:
     image: payment
-    build: ./v2/src/payment/
+    build: v2/payment
     ports:
       - "8060:8060"
       
   reservation:
     image: reservation
-    build: ./v2/src/reservation/
+    build: v2/reservation
     ports:
       - "8070:8070"
 
