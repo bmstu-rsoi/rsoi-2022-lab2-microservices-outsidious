@@ -1,8 +1,15 @@
-FROM node:14-alpine3.12
-
-COPY . /app/
+FROM node:14-alpine3.12 as build
 WORKDIR /app
+COPY package*.json ./
+RUN npm i
+COPY . /app
+RUN npm run build
 
-RUN npm install
+FROM node:14-alpine3.12 as prod
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+COPY --from=build /app/dist ./dist
 
 RUN npm run start:prod
