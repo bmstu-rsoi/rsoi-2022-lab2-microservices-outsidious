@@ -1,8 +1,8 @@
 FROM node:14-alpine3.12
 
-COPY src/ /app/
+COPY . /app/
 WORKDIR /app
 
 RUN npm install
 
-CMD [ "npm", "run", "start:prod" ]
+RUN npm run start:prod
