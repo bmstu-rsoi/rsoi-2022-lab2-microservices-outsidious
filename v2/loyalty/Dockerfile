@@ -12,4 +12,4 @@ RUN npm ci --only=production
 COPY . .
 COPY --from=build /app/dist ./dist
 
-RUN npm run start:prod
+CMD ["npm", "run", "start:prod"]

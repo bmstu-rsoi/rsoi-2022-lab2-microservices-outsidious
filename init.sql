@@ -1,3 +1,15 @@
+CREATE TABLE hotels
+(
+    id        SERIAL PRIMARY KEY,
+    hotel_uid uuid         NOT NULL UNIQUE,
+    name      VARCHAR(255) NOT NULL,
+    country   VARCHAR(80)  NOT NULL,
+    city      VARCHAR(80)  NOT NULL,
+    address   VARCHAR(255) NOT NULL,
+    stars     INT,
+    price     INT          NOT NULL
+);
+
 CREATE TABLE reservation
 (
     id              SERIAL PRIMARY KEY,
@@ -9,18 +21,6 @@ CREATE TABLE reservation
         CHECK (status IN ('PAID', 'CANCELED')),
     start_date      TIMESTAMP WITH TIME ZONE,
     end_data        TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE hotels
-(
-    id        SERIAL PRIMARY KEY,
-    hotel_uid uuid         NOT NULL UNIQUE,
-    name      VARCHAR(255) NOT NULL,
-    country   VARCHAR(80)  NOT NULL,
-    city      VARCHAR(80)  NOT NULL,
-    address   VARCHAR(255) NOT NULL,
-    stars     INT,
-    price     INT          NOT NULL
 );
 
 CREATE TABLE payment
