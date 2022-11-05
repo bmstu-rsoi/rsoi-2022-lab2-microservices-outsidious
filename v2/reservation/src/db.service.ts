@@ -13,12 +13,14 @@ export class DbService {
     const user = 'postgres';
     const database = name;
     const password = 'root';
+    const host = 'postgres';
     const port = 5432;
 
     this.client = new Client({
       user,
       database,
       password,
+      host,
       port,
       client_encoding: 'WIN1251',
       ssl: { rejectUnauthorized: false },
