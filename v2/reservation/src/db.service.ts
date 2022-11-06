@@ -4,15 +4,15 @@ import { Client } from 'pg';
 @Injectable()
 export class DbService {
   constructor(name: string) {
-    this.init(name);
+    this.init();
   }
 
   public client: Client;
 
-  private async init(name: string) {
+  private async init() {
     const user = 'postgres';
-    const database = name;
-    const password = 'root';
+    const database = 'postgres';
+    const password = 'postgres';
     const host = 'postgres';
     const port = 5432;
 

@@ -3,7 +3,7 @@ import { Reservation } from './reservation';
 import { DbService } from './db.service';
 import { Client } from 'pg';
 
-const RESERVVATION_TABLE: string = 'reservations';
+const RESERVVATION_TABLE: string = 'reservation';
 
 @Injectable()
 export class AppService {
