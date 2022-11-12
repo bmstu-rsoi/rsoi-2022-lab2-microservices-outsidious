@@ -23,7 +23,7 @@ export class DbService {
       host,
       port,
       client_encoding: 'WIN1251',
-      ssl: { rejectUnauthorized: false },
+      ssl: false,
     });
     this.client.connect((err) => {
       if (err) {
