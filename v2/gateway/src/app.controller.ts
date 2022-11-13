@@ -17,6 +17,7 @@ import * as moment from 'moment';
 import { v4 as uuid4 } from 'uuid';
 import { Payment } from './models/payment';
 import { Reservation } from './models/reservation';
+import { Request } from 'express';
 
 @Controller('api/v1')
 export class AppController {

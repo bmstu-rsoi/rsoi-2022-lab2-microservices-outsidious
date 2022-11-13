@@ -17,7 +17,7 @@ export class PaymentService {
           'X-User-Name': username,
         },
       })
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 
   public createPayment(username: string, payment: Payment) {
@@ -28,7 +28,7 @@ export class PaymentService {
           'X-User-Name': username,
         },
       })
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 
   public changePaymentState(username, uid, status) {
@@ -43,6 +43,6 @@ export class PaymentService {
           },
         },
       )
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 }

@@ -15,12 +15,12 @@ export class ReservationsService {
     const params = new URLSearchParams();
     params.set('page', page);
     params.set('size', pageSize);
-    return this.http.get(url, { params }).pipe(map((res) => res.data));
+    return this.http.get(url, { params }).pipe(map((res: any) => res.data));
   }
 
   public getHotel(uid: string) {
     const url = this.host + `/hotels/${uid}`;
-    return this.http.get<Hotel>(url).pipe(map((res) => res.data));
+    return this.http.get<Hotel>(url).pipe(map((res: any) => res.data));
   }
 
   public createReservation(username, r: Reservation) {
@@ -31,7 +31,7 @@ export class ReservationsService {
           'X-User-Name': username,
         },
       })
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 
   public getReservation(username, uid) {
@@ -42,7 +42,7 @@ export class ReservationsService {
           'X-User-Name': username,
         },
       })
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 
   public getUserReservations(username) {
@@ -53,7 +53,7 @@ export class ReservationsService {
           'X-User-Name': username,
         },
       })
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 
   public setReservationStatus(username, uid, status) {
@@ -68,6 +68,6 @@ export class ReservationsService {
           },
         },
       )
-      .pipe(map((res) => res.data));
+      .pipe(map((res: any) => res.data));
   }
 }
