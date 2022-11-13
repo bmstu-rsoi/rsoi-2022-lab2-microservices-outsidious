@@ -18,6 +18,7 @@ import { v4 as uuid4 } from 'uuid';
 import { Payment } from './models/payment';
 import { Reservation } from './models/reservation';
 import { Request } from 'express';
+import { map } from 'rxjs';
 
 @Controller('api/v1')
 export class AppController {
@@ -29,7 +30,14 @@ export class AppController {
 
   @Get('/hotels')
   async getHotels(@Query('page') page: number, @Query('size') size: number) {
-    return this.reservationService.getHotels(page, size).toPromise();
+    return this.reservationService
+      .getHotels(page, size)
+      .pipe(
+        map((data: any) => {
+          return { ...data, totalElements: data.items.length };
+        }),
+      )
+      .toPromise();
   }
 
   private async getAllReservations(username) {
