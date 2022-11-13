@@ -1,18 +1,48 @@
 import { Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { Payment } from 'src/models/payment';
+import { map } from 'rxjs';
 
 @Injectable()
 export class PaymentService {
-  constructor() {}
+  constructor(private readonly http: HttpService) {}
 
-  public getPayment() {
-    return 'getPayment';
+  private host = 'http://localhost:8060';
+
+  public getPayment(username: string, paymentId: string) {
+    const url = this.host + `/payment/${paymentId}`;
+    return this.http
+      .get<Payment>(url, {
+        headers: {
+          'X-User-Name': username,
+        },
+      })
+      .pipe(map((res) => res.data));
   }
 
-  public createPayment() {
-    return 'createPayment';
+  public createPayment(username: string, payment: Payment) {
+    const url = this.host + `/payment`;
+    return this.http
+      .post<Payment>(url, payment, {
+        headers: {
+          'X-User-Name': username,
+        },
+      })
+      .pipe(map((res) => res.data));
   }
 
-  public updatePayment() {
-    return 'updatePayment';
+  public changePaymentState(username, uid, status) {
+    const url = this.host + `/payment/${uid}`;
+    return this.http
+      .patch<Payment>(
+        url,
+        { status },
+        {
+          headers: {
+            'X-User-Name': username,
+          },
+        },
+      )
+      .pipe(map((res) => res.data));
   }
 }
