@@ -8,7 +8,7 @@ import { Reservation } from 'src/models/reservation';
 export class ReservationsService {
   constructor(private readonly http: HttpService) {}
 
-  private host = 'http://localhost:8070';
+  private host = 'http://reservation:8070';
 
   public getHotels(page, pageSize): Observable<Hotel[]> {
     const url = this.host + '/hotels';

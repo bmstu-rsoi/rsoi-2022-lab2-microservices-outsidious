@@ -7,7 +7,7 @@ import { Loyalty } from 'src/models/loyalty';
 export class LoyaltyService {
   constructor(private readonly http: HttpService) {}
 
-  private host = 'http://localhost:8050';
+  private host = 'http://loyalty:8050';
 
   public getLoyalty(username): Observable<Loyalty> {
     const url = this.host + '/loyalty';

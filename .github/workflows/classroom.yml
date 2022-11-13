@@ -28,6 +28,10 @@ jobs:
         run: |
           docker compose up -d
           ./scripts/wait-script.sh
+        
+      - name: Timeout
+        run: sleep 30s
+        shell: bash
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master

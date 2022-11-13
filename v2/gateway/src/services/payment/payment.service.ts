@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 export class PaymentService {
   constructor(private readonly http: HttpService) {}
 
-  private host = 'http://localhost:8060';
+  private host = 'http://payment:8060';
 
   public getPayment(username: string, paymentId: string) {
     const url = this.host + `/payment/${paymentId}`;

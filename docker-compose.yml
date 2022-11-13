@@ -16,6 +16,7 @@ services:
 
   gateway:
     image: gateway
+    restart: on-failure
     build: v2/gateway
     ports:
       - "8080:8080"
@@ -26,6 +27,7 @@ services:
 
   loyalty:
     image: loyalty
+    restart: on-failure
     build: v2/loyalty
     ports:
       - "8050:8050"
@@ -36,6 +38,7 @@ services:
 
   payment:
     image: payment
+    restart: on-failure
     build: v2/payment
     ports:
       - "8060:8060"
@@ -46,6 +49,7 @@ services:
 
   reservation:
     image: reservation
+    restart: on-failure
     build: v2/reservation
     ports:
       - "8070:8070"
