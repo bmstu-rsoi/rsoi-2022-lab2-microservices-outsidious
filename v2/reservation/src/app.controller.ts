@@ -44,7 +44,7 @@ export class AppController {
   async getAllUsersReservations(@Req() request: Request) {
     Logger.log(JSON.stringify(request.headers));
     const username: string = request.headers['x-user-name']?.toString();
-    if (!username) throw new BadRequestException('username must be provided');
+    if (!username) throw new BadRequestException('x-user-name');
     const reservations = await this.service.getUserReservations(username);
     const items = [];
     for (const r of reservations) {
@@ -60,7 +60,7 @@ export class AppController {
     @Req() request: Request,
   ) {
     const username: string = request.headers['x-user-name']?.toString();
-    if (!username) throw new BadRequestException('username must be provided');
+    if (!username) throw new BadRequestException('x-user-name');
     const r = await this.service.getReservationById(uid);
     const h = await this.hotel.getHotelById(r.hotel_id);
     if (r.username === username) {
@@ -73,7 +73,7 @@ export class AppController {
   @Post('/')
   async createReservation(@Body() body: Reservation, @Req() request: Request) {
     const username: string = request.headers['x-user-name']?.toString();
-    if (!username) throw new BadRequestException('username must be provided');
+    if (!username) throw new BadRequestException('x-user-name');
     if (body.username != username)
       throw new HttpException('cant create reservation for another user', 403);
     const h = await this.hotel.getHotelByUid(body.hotel_id.toString());
@@ -97,7 +97,7 @@ export class AppController {
     @Body('status') status: string,
   ) {
     const username: string = request.headers['x-user-name']?.toString();
-    if (!username) throw new BadRequestException('username must be provided');
+    if (!username) throw new BadRequestException('x-user-name');
     const r = await this.service.getReservationById(uid);
     if (r.username === username) {
       const result = await this.service.updateReservationStatus(uid, status);
