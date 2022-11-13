@@ -42,8 +42,8 @@ export class AppController {
         .toPromise();
       items.push({
         ...r,
-        startDate: moment(new Date(r.startDate)),
-        endDate: moment(new Date(r.startDate)),
+        startDate: moment(new Date(r.startDate)).format('YYYY-MM-DD'),
+        endDate: moment(new Date(r.endDate)).format('YYYY-MM-DD'),
         paymentUid: undefined,
         payment: {
           status: p.status,
@@ -92,6 +92,7 @@ export class AppController {
 
     const payment = {
       payment_uid: uuid4(),
+      status: 'PAID',
       price: resultPay,
     } as Payment;
     const p = await this.paymentService
@@ -115,8 +116,8 @@ export class AppController {
       .toPromise();
     return {
       ...r,
-      startDate: moment(new Date(r.startDate)),
-      endDate: moment(new Date(r.endDate)),
+      startDate: moment(new Date(r.startDate)).format('YYYY-MM-DD'),
+      endDate: moment(new Date(r.endDate)).format('YYYY-MM-DD'),
       discount: loyalty.discount,
       payment: {
         status: payment.status,
