@@ -19,7 +19,7 @@ export class AppService {
 
   async createPayment(p: Payment) {
     const query = `
-        INSERT INTO ${PAYMENT_TABLE} (payment_id, status, price)
+        INSERT INTO ${PAYMENT_TABLE} (payment_uid, status, price)
           VALUES ('${p.payment_uid}', '${p.status}', ${p.price});
         `;
     try {
@@ -34,7 +34,7 @@ export class AppService {
   async getPaymentByUid(uid: string): Promise<Payment> {
     const query = `
         SELECT * FROM ${PAYMENT_TABLE}
-        WHERE payment_id='${uid}'
+        WHERE payment_uid='${uid}'
         
       `;
 
@@ -51,7 +51,7 @@ export class AppService {
     const query = `
         UPDATE ${PAYMENT_TABLE} 
         SET status='${status}'
-        WHERE payment_id='${uid}';
+        WHERE payment_uid='${uid}';
         `;
     try {
       await this.pg.query(query);
