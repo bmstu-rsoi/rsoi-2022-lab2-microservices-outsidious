@@ -2,31 +2,22 @@ import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Payment } from './payment';
 import { AppService } from './app.service';
 
-@Controller('service')
+@Controller('payment')
 export class AppController {
-  constructor(
-    private readonly service: AppService,
-) {}
+  constructor(private readonly service: AppService) {}
 
-@Post('/')
-async createPayment(
-    @Body() body: Payment,
-)  {
-    return await this.service.createPayment(body); 
-}
+  @Post('/')
+  async createPayment(@Body() body: Payment) {
+    return await this.service.createPayment(body);
+  }
 
-@Patch('/:paymentId') 
-async updatePayment(
-    @Body() body: Payment, 
-    @Param('paymentId') uid: string,
-) {
+  @Patch('/:paymentId')
+  async updatePayment(@Body() body: Payment, @Param('paymentId') uid: string) {
     return await this.service.updatePaymentStatus(uid, body.status);
-}
+  }
 
-@Get('/:paymentId')
-async getPayment(
-    @Param('paymentId') uid: string,
-) {
+  @Get('/:paymentId')
+  async getPayment(@Param('paymentId') uid: string) {
     return await this.service.getPaymentByUid(uid);
-}
+  }
 }

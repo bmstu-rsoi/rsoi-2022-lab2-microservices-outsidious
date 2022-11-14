@@ -18,7 +18,9 @@ export class LoyaltyService {
         },
       })
       .pipe(
-        map((res: any) => res.data),
+        map((res: any) => {
+          return res.data;
+        }),
         catchError((e) => of(null)),
       );
   }

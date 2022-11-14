@@ -184,8 +184,15 @@ export class AppController {
       .toPromise();
   }
 
-  /*@Get('/loyalty')
-  getLoyalty() {
-    return this.loaltyService.getLoyalty();
-  }*/
+  @Get('loyalty')
+  async getLoyalty(@Req() request: Request) {
+    const username: string = request.headers['x-user-name']?.toString();
+    if (!username) throw new BadRequestException('x-user-name');
+
+    const l = await this.loaltyService.getLoyalty(username).toPromise();
+    return {
+      ...l,
+      username: undefined,
+    };
+  }
 }
