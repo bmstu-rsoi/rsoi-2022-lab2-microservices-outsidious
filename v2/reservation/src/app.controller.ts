@@ -30,7 +30,7 @@ export class AppController {
       hotel: {
         hotelUid: h.hotel_uid,
         name: h.name,
-        fullAddress: h.country + h.city + h.address,
+        fullAddress: h.country + ', ' + h.city + ', ' + h.address,
         stars: h.stars,
       },
       reservationUid: r.reservation_uid,

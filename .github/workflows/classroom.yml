@@ -39,7 +39,7 @@ jobs:
           # TODO insert your variant
           collection: v2/postman/collection.json
           environment: v2/postman/environment.json
-          delayRequest: 100
+          delayRequest: 1000
           reporters: '[ "cli" ]'
 
       - uses: education/autograding@v1
